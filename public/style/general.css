@@ -1,0 +1,27 @@
+body 
+	{ background-color: #FFFFFF; font-size: 14px; font-family: verdana; }
+nav#navHeader
+	{ background-color: #D65040; }
+
+
+.form-wrapper
+	{ border-radius: 7px; }
+
+.form-wrapper label
+	{ font-weight: bold; }
+.errors li
+	{ list-style: none; width: 100%;  }
+.errors ul
+	{ padding-left: 0; margin-bottom: 0; }
+
+
+
+@media (max-width: 768px){
+	.form-wrapper .text-right
+		{ text-align: center !important; }
+	.form-wrapper .btn-primary
+		{ display: block; margin: 0 auto; }
+}
+
+li.active
+	{ font-weight: bold; color: #ffffff;}
