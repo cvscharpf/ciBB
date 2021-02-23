@@ -73,6 +73,7 @@ class Users extends BaseController
 							  'phone' => $this->request->getVar('phone'), 
 							  'pay_method' => $this->request->getVar('pay_method'), 
 							  'password' => $this->request->getVar('password'), 
+							  'address' => $this->request->getVar('address'), 
 							]; 
 				$model->save($newUser); 
 				$this->session->setFlashdata('successRegistration', 'Registration was successful. Please login'); 
@@ -120,6 +121,7 @@ class Users extends BaseController
 							 'lastname' => $this->request->getPost('lastname'), 
 							 'phone' => $this->request->getPost('phone'), 
 							 'pay_method' => $this->request->getPost('pay_method'), 
+							 'address' => $this->request->getPost('address'), 
 							]; 
 				//same idea as before... if the user does not want to change password... 
 				if($this->request->getPost('password') != ''){
@@ -202,6 +204,7 @@ class Users extends BaseController
 							'email' => $user['email'], 
 							'phone' => $user['phone'], 
 							'pay_method' => $user['pay_method'], 
+							'address' => $user['address'], 
 							'isLoggedIn' => true, 
 							'type' => 'customer'
 						]; 

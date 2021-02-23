@@ -56,6 +56,13 @@
 									<input type="password" class="form-control" name="password_confirm" id="password_confirm" value="" />
 								</div>
 							</div>
+							<div class="col-12">
+								<div class="form-group">
+									<label for="address">Address</label>
+									<textarea class="form-control" name="address" id="address" rows="3"></textarea>
+									<small id="addressHelp" class="form-text text-muted">Include an address only if you would like to have your order delivered.</small>
+								</div>
+							</div>
 							
 							<?php if(isset($validationResult)): ?>
 							<div class="col-12">

@@ -35,17 +35,13 @@ class Cart extends BaseController
 	}
 	
 	
-	protected function total()
-	{
-		return 100; 
-	}
 	
 	
 	public function add($fid = null)
 	{
 		$cart = $this->session->get(CART); 
 		if(!isset($cart[$fid])){
-			$cart[$fid] = 'some info about product with id ' . $fid; 
+			$cart[$fid] = '1'; 
 			$this->session->set(CART, $cart); 
 			$this->session->setFlashdata('flash', 'Your product was added to Cart'); 
 		}
@@ -62,23 +58,44 @@ class Cart extends BaseController
 			$this->session->set(CART, $cart); 
 		}
 		
-		return redirect()->back(); 
+		if(!$this->request->isAJAX()){
+			return redirect()->back(); 
+		}
 	}
+	
+	
+	
+	public function changeQty($fid, $newQty)
+	{
+		$cart = $this->session->get(CART); 
+		if(isset($cart[$fid])){
+			$cart[$fid] = $newQty; 
+			$this->session->set(CART, $cart); 
+			return '1';
+		}
+		return '0';
+	}
+	
 	
 	
 	public function empty()
 	{
+		$cart = $this->session->get(CART); 
+		$cart = []; 
+		$this->session->set(CART, $cart); 
 		
-		return null; 
-		
+		return redirect()->back(); 
 	}
 	
 	
 	public function checkout()
 	{
 		if($this->user){
-			$data = []; 
 			
+			$data['itemsInCart'] = []; 
+			foreach($this->session->get(CART) as $id => $item){
+				$data['itemsInCart'][] = $this->model->getMenu($id)[0]; 
+			}
 			
 			echo view('templates/header');
 			echo view('cart/checkout', $data);

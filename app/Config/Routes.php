@@ -39,6 +39,7 @@ $routes->match(['get', 'post'], 'users/register', 'Users::register');
 $routes->get('menu', 'Menu::main');
 $routes->get('menu/(:any)', 'Menu::main/$1');
 $routes->get('cart', 'Cart::main');
+$routes->get('checkout', 'Order::checkout');
 
 
 

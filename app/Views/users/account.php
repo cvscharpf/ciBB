@@ -64,6 +64,14 @@
 									<input type="password" class="form-control" name="password_confirm" id="password_confirm" value="" />
 								</div>
 							</div>
+							<div class="col-12">
+								<div class="form-group">
+									<label for="address">Address</label>
+									<textarea class="form-control" name="address" id="address" rows="3">
+										<?php echo set_value('address', $user['address']); ?>
+									</textarea>
+								</div>
+							</div>
 							
 							<?php if(isset($validationResult)): ?>
 							<div class="col-12">
