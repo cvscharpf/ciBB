@@ -87,28 +87,4 @@ class Cart extends BaseController
 		return redirect()->back(); 
 	}
 	
-	
-	public function checkout()
-	{
-		if($this->user){
-			
-			$data['itemsInCart'] = []; 
-			foreach($this->session->get(CART) as $id => $item){
-				$data['itemsInCart'][] = $this->model->getMenu($id)[0]; 
-			}
-			
-			echo view('templates/header');
-			echo view('cart/checkout', $data);
-			echo view('templates/footer');
-		}
-		else{
-			$this->session->setFlashdata('flash', 'You have to be logged in, to complete that action'); 
-			return redirect()->to('/users/login'); 
-		}
-		
-	}
-	
-	
-	
-	
 }

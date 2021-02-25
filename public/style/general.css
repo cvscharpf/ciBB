@@ -14,7 +14,16 @@ nav#navHeader
 .errors ul
 	{ padding-left: 0; margin-bottom: 0; }
 
-
+li.active
+	{ font-weight: bold; color: #ffffff;}
+.pickup_time
+	{ background-color: #fcf5ed; }
+.total, .submit-button
+	{ margin: 10px; font-size: 140%; }
+.amount
+	{ padding-left: 20px; }
+span.border-button
+	{ border: 1px solid #888; border-radius: 7px;  padding: 4px; font-size: 110%; font-weight: bold;}
 
 @media (max-width: 768px){
 	.form-wrapper .text-right
@@ -22,6 +31,3 @@ nav#navHeader
 	.form-wrapper .btn-primary
 		{ display: block; margin: 0 auto; }
 }
-
-li.active
-	{ font-weight: bold; color: #ffffff;}

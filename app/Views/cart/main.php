@@ -47,7 +47,7 @@
 			</div>
 			
 			<div class="d-flex">
-				<a class="btn btn-primary btn-lg p-2" href="<?php echo base_url('cart/checkout'); ?>" role="button">Checkout</a>
+				<a class="btn btn-primary btn-lg p-2" href="<?php echo base_url('orders/checkout'); ?>" role="button">Checkout</a>
 				<a class="btn btn-primary btn-lg ml-auto p-2" id="emptyCart" href="<?php echo base_url('cart/empty'); ?>" role="button">Empty Cart</a>
 			</div>
 		<?php else: ?>

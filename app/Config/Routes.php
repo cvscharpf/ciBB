@@ -34,12 +34,17 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('users', 'Users::index');
+$routes->get('orders/', 'Users::orders');
 $routes->match(['get', 'post'], 'users/login', 'Users::index');
 $routes->match(['get', 'post'], 'users/register', 'Users::register');
 $routes->get('menu', 'Menu::main');
 $routes->get('menu/(:any)', 'Menu::main/$1');
 $routes->get('cart', 'Cart::main');
-$routes->get('checkout', 'Order::checkout');
+$routes->get('checkout', 'Orders::checkout');
+
+
+$routes->get('admin/', 'Admin::login');
+$routes->get('admin/login', 'Admin::login');
 
 
 

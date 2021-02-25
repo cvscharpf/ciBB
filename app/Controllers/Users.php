@@ -7,7 +7,7 @@ use App\Models\PaymentMethodModel as Pay;
 
 class Users extends BaseController
 {
-	//this one needs forms-helper enabled 
+	//login
 	public function index()
 	{
 		$data = []; 
@@ -32,7 +32,14 @@ class Users extends BaseController
 				$user = $model->getUserByField('email', $this->request->getVar('email')); 
 				$this->setCustomerToSession($user); 
 				
-				return redirect()->to('/users/orders');
+				$rrv = $this->session->get('returnAfterRedirect'); 
+				if(!empty($rrv)){
+					unset($_SESSION['returnAfterRedirect']);
+					return redirect()->to($rrv); 
+				}
+				else{
+					return redirect()->to('/users/orders');
+				}
 			}
 		}
 		
@@ -73,7 +80,7 @@ class Users extends BaseController
 							  'phone' => $this->request->getVar('phone'), 
 							  'pay_method' => $this->request->getVar('pay_method'), 
 							  'password' => $this->request->getVar('password'), 
-							  'address' => $this->request->getVar('address'), 
+							  'address' => trim($this->request->getVar('address')), 
 							]; 
 				$model->save($newUser); 
 				$this->session->setFlashdata('successRegistration', 'Registration was successful. Please login'); 

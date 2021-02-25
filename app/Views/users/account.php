@@ -67,9 +67,7 @@
 							<div class="col-12">
 								<div class="form-group">
 									<label for="address">Address</label>
-									<textarea class="form-control" name="address" id="address" rows="3">
-										<?php echo set_value('address', $user['address']); ?>
-									</textarea>
+									<textarea class="form-control" name="address" id="address" rows="3"><?php echo set_value('address', $user['address']); ?></textarea>
 								</div>
 							</div>
 							
