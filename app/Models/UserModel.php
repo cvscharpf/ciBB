@@ -8,6 +8,9 @@ use App\Models\PaymentMethodModel as PayMethod;
 class UserModel extends Model
 {
 	protected $table = 'customers'; 
+	protected $ordersTable = 'orders'; 
+	protected $itemsTable = 'orders_contents'; 
+	protected $foodsTable = 'foods'; 
 	protected $primaryKey = 'id';
 	protected $useAutoIncrement = true;
     protected $returnType = 'array';
@@ -38,6 +41,32 @@ class UserModel extends Model
 		
 	}
 	
+	
+	public function getUserOrders($uid)
+	{
+		$db = db_connect();
+		$res = $db->query('SELECT o.*, i.qty, f.food_name, f.price, f.image 
+							FROM ' . $this->ordersTable . ' AS o 
+								RIGHT JOIN ' . $this->itemsTable . ' AS i ON i.o_id = o.id 
+								RIGHT JOIN ' . $this->foodsTable . ' AS f on i.f_id = f.id  
+							WHERE o.cust_id = ?', [$uid]);
+		$orders = []; 
+		
+		foreach($res->getResult() as $row){
+			if(array_key_exists($row->id, $orders)){
+				$orders[$row->id]['food'][] = ['name' => $row->food_name, 'price' => $row->price, 'image' => $row->image, 'qty' => $row->qty]; 
+			}
+			else{
+				//$orders[$row->id] = []; 
+				$orders[$row->id]['info'] = ['id' => $row->id, 'created' => $row->created, 'car_description' => $row->car_description, 'delivery_address' => $row->delivery_address, 'timePref' => $row->timePref, 'deliveryType' => $row->deliveryType, 'total' => $row->total, 'ready' => $row->ready]; 
+				$orders[$row->id]['food'][] = ['name' => $row->food_name, 'price' => $row->price, 'image' => $row->image, 'qty' => $row->qty]; 
+			}
+		}
+		return $orders; 
+	}
+	
+
+
 	
 	//this will be called before every insert
 	//$data contains all the data passed from the controller

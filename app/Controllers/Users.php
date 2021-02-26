@@ -174,9 +174,14 @@ class Users extends BaseController
 	
 	public function orders()
 	{
+		
 		if($this->user)
 		{
-			$data = []; 
+			$data = ['orders' => []]; 
+			
+			$model = new UserModel(); 
+			$orders = $model->getUserOrders($this->user['id']); 
+			$data['orders'] = $orders; 
 			
 			echo view('templates/header', $data);
 			echo view('users/orders', ); 

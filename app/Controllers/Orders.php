@@ -20,31 +20,6 @@ class Orders extends BaseController
 	
 	public function checkout()
 	{
-/*
-		echo '<pre>';
-		var_dump($_POST);
-		echo '</pre>';
-		echo '<br />';
-		
-		$data = []; 
-		$itemsInCart = $this->session->get(CART); 
-		foreach($itemsInCart as $id => $item){
-					$data[] = $this->menuModel->getMenu($id)[0]; 
-				}		
-		
-		
-		echo '<pre>';
-		var_dump($data);
-		echo '</pre>';
-		echo '<br />';
-		
-		
-		echo '<pre>';
-		var_dump($this->session->get(CART));
-		echo '</pre>';
-		echo '<br />';
-		
-*/
 		$data = []; 
 		$contents = []; 
 		helper(['form']);
